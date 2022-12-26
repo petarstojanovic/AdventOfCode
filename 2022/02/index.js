@@ -1,5 +1,4 @@
-const fs = require("fs");
-const readline = require("readline");
+const { readLinesFromFile } = require("../../utils/utils");
 
 const firstStrategyGuide = {
   A: {
@@ -38,15 +37,10 @@ const secondStrategyGuide = {
 };
 
 async function partOne() {
-  const fileStream = fs.createReadStream("./data.txt");
-
-  const rl = readline.createInterface({
-    input: fileStream,
-    crlfDelay: Infinity,
-  });
+  const lines = await readLinesFromFile("./data.txt");
 
   let totalScore = 0;
-  for await (const line of rl) {
+  for await (const line of lines) {
     const [opponent, , me] = line;
     const score = firstStrategyGuide[opponent][me];
     console.log(`Score of round => ${opponent}-${me} = ${score}`);

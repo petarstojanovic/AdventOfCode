@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "node part1.js && node part2.js",
+    "part1": "node part1.js",
+    "part2": "node part2.js"
   },
   "author": "Petar Stojanovic",
   "license": "ISC"
