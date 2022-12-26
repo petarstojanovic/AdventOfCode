@@ -1,4 +1,4 @@
-const utils = require("./utils.js");
+const utils = require("../../utils.js");
 
 async function main() {
   const lines = (await utils.readLinesFromFile("./data.txt"))

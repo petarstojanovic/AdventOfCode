@@ -33,7 +33,7 @@ function areOverlapping(A, B) {
 }
 
 const partTwo = async () => {
-  const fileStream = fs.createReadStream("./data2.txt");
+  const fileStream = fs.createReadStream("./data.txt");
 
   const rl = readline.createInterface({
     input: fileStream,
@@ -55,4 +55,5 @@ const partTwo = async () => {
   console.log(count);
 };
 
+partOne();
 partTwo();

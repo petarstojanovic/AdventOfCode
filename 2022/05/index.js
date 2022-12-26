@@ -1,18 +1,6 @@
 const fs = require("fs");
 const readline = require("readline");
 
-const cargo = {
-  1: ["W", "R", "F"],
-  2: ["T", "H", "M", "C", "D", "V", "W", "P"],
-  3: ["P", "M", "Z", "N", "L"],
-  4: ["J", "C", "H", "R"],
-  5: ["C", "P", "G", "H", "Q", "T", "B"],
-  6: ["G", "C", "W", "L", "F", "Z"],
-  7: ["W", "V", "L", "Q", "Z", "J", "G", "C"],
-  8: ["P", "N", "R", "F", "W", "T", "V", "C"],
-  9: ["J", "W", "H", "G", "R", "S", "V"],
-};
-
 async function getCargo() {
   const fileStream = fs.createReadStream("./cargo.txt");
 

@@ -37,7 +37,6 @@ const partOne = async () => {
     const part1 = line.slice(0, line.length / 2);
     const part2 = line.slice(line.length / 2);
 
-    const intersection = [];
     for (const char of part1) {
       if (part2.includes(char)) {
         // we found intersection
@@ -53,7 +52,7 @@ const partOne = async () => {
 };
 
 const partTwo = async () => {
-  const fileStream = fs.createReadStream("./data2.txt");
+  const fileStream = fs.createReadStream("./data.txt");
 
   const rl = readline.createInterface({
     input: fileStream,
@@ -80,4 +79,5 @@ const partTwo = async () => {
   console.log(sum);
 };
 
+partOne();
 partTwo();

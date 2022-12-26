@@ -1,4 +1,4 @@
-const utils = require("./utils.js");
+const utils = require("../../utils.js");
 
 function getLine(d1, d2) {
   const k = (d2.col - d1.col) / (d2.row - d1.row);

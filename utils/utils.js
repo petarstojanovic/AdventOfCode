@@ -29,7 +29,21 @@ function createMatrix(N, M, initElement = ".") {
 }
 
 String.prototype.getAllDigits = function () {
-  return this.match(/\d/g).map(Number);
+  return this.match(/-?\d+/g).map(Number);
+};
+
+const dfs = function (start, target) {
+  if (start.value === target) {
+    return start;
+  }
+
+  for (var i = 0; i < start.children.length; i++) {
+    var result = dfs(start.children[i], target);
+    if (result != null) {
+      return result;
+    }
+  }
+  return null;
 };
 
 class Point {
@@ -40,52 +54,55 @@ class Point {
     this.path = [this];
   }
 
-  getNeighbours() {
-    const neighbours = [];
+  getNeighbors() {
+    const neighbors = [];
     for (let i = -1; i <= 1; i++) {
       for (let j = -1; j <= 1; j++) {
-        neighbours.push(new Point(this.x + i, this.y + j, this.w + 1));
+        if (i !== 0 && j !== 0)
+          neighbors.push(new Point(this.row + i, this.col + j, this.w + 1));
       }
     }
-    return neighbours;
+    return neighbors;
   }
 
-  getImmediateNeighbours() {
-    const neighbours = [];
+  getImmediateNeighbors() {
+    const neighbors = [];
     const positions = [
       [-1, 0],
       [0, -1],
       [0, 1],
       [1, 0],
     ];
-    positions.map((p) => new Point(this.x + p[0], this.y + p[1], this.w + 1));
-    return neighbours;
+    positions.map(
+      (p) => new Point(this.row + p[0], this.col + p[1], this.w + 1)
+    );
+    return neighbors;
   }
 
   up() {
-    this.x -= 1;
+    this.row -= 1;
   }
 
   down() {
-    this.x += 1;
+    this.row += 1;
   }
 
   left() {
-    this.y -= 1;
+    this.col -= 1;
   }
 
   right() {
-    this.y += 1;
+    this.col += 1;
   }
 
   add(point) {
     if (point instanceof Array) {
-      this.x += point[0];
-      this.y += point[1];
+      this.row += point[0];
+      this.col += point[1];
     }
     if (point instanceof Point) {
-      this.x += point.x;
-      this.y += point.y;
+      this.row += point.row;
+      this.col += point.col;
     }
   }
 }
@@ -103,7 +120,7 @@ function getDistance(p1, p2) {
 }
 
 function printMatrix(matrix) {
-  console.log(matrix.map((row) => row.join("")));
+  console.log(matrix.map((row) => row.join("")).join("\n"));
 }
 
 module.exports = {
