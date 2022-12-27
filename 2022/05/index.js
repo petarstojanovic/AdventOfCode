@@ -1,21 +1,7 @@
-const fs = require("fs");
-const readline = require("readline");
+const { readLinesFromFile, getAllDigits } = require("../../utils/utils");
 
 async function getCargo() {
-  const fileStream = fs.createReadStream("./cargo.txt");
-
-  const rl = readline.createInterface({
-    input: fileStream,
-    crlfDelay: Infinity,
-  });
-
-  const cargoRaw = [];
-
-  for await (const line of rl) {
-    cargoRaw.push(line);
-  }
-
-  await rl.close();
+  const cargoRaw = await readLinesFromFile("./cargo.txt");
 
   const indexRow = cargoRaw.pop();
   const indexes = indexRow
@@ -40,15 +26,10 @@ async function getCargo() {
 
 async function partOne() {
   const cargo = await getCargo();
-  const fileStream = fs.createReadStream("./instructions.txt");
+  const lines = await readLinesFromFile("./instructions.txt");
 
-  const rl = readline.createInterface({
-    input: fileStream,
-    crlfDelay: Infinity,
-  });
-
-  for await (const line of rl) {
-    const [, quantity, , from, , to] = line.split(" ");
+  for (const line of lines) {
+    const [quantity, from, to] = getAllDigits(line);
 
     for (let i = 0; i < quantity; i++) {
       const crate = cargo[from].pop();
@@ -64,15 +45,10 @@ async function partOne() {
 
 const partTwo = async () => {
   const cargo = await getCargo();
-  const fileStream = fs.createReadStream("./instructions.txt");
+  const lines = await readLinesFromFile("./instructions.txt");
 
-  const rl = readline.createInterface({
-    input: fileStream,
-    crlfDelay: Infinity,
-  });
-
-  for await (const line of rl) {
-    const [, quantity, , from, , to] = line.split(" ");
+  for (const line of lines) {
+    const [quantity, from, to] = getAllDigits(line);
 
     const crates = cargo[from].splice(cargo[from].length - quantity);
     cargo[to].push(...crates);

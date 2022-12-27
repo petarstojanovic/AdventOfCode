@@ -28,9 +28,9 @@ function createMatrix(N, M, initElement = ".") {
   return Array.from(Array(N), () => Array(M).fill(initElement));
 }
 
-String.prototype.getAllDigits = function () {
-  return this.match(/-?\d+/g).map(Number);
-};
+function getAllDigits(value) {
+  return value.match(/-?\d+/g).map(Number);
+}
 
 const dfs = function (start, target) {
   if (start.value === target) {
@@ -132,4 +132,5 @@ module.exports = {
   minN,
   getDistance,
   printMatrix,
+  getAllDigits,
 };
