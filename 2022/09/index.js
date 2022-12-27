@@ -24,7 +24,7 @@ async function polingRope(rope) {
   for (const line of data) {
     const [dir, steps] = line.split(" ");
 
-    for (let i = 0; i < Number(steps); i++) {
+    for (let i = 0; i < +steps; i++) {
       const head = rope[0];
       const tail = rope[rope.length - 1];
       head[0] += dirs[dir][0];
