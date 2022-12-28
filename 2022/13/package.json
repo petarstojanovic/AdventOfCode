@@ -10,6 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "mathjs": "^11.5.0"
+    "bignumber.js": "^9.1.1"
   }
 }
